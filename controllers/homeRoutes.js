@@ -16,8 +16,6 @@ router.get('/', async (req, res) => {
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-
-    console.log('postsare', posts);
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       posts, 
@@ -40,9 +38,6 @@ router.get('/posts/:id', async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
-
-    console.log('post data is', post);
-
     res.render('posts', {
       ...post,
       logged_in: req.session.logged_in
@@ -62,10 +57,10 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-
+    console.log(user)
     res.render('profile', {
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
