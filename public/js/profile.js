@@ -42,13 +42,14 @@ const updateButtonHandler = async (event) => {
     const updateId = event.target.getAttribute('data-id');
 
     const response = await fetch(`/api/posts/${updateId}`, {
-      method: 'UPDATE',
+      // method: 'UPDATE',
+      
     });
-
+    console.log(response)
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to delete post');
+      alert('Failed to update post');
     }
   }
 }
